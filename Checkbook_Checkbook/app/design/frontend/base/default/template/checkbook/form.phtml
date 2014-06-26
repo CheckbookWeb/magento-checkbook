@@ -12,9 +12,10 @@
 					<div>
 						<div class="box" style="margin: 0; padding: 0px 20px 0px 20px;">
 							<h3 class="bigintro">Pay by Online Check
-								<a id="checkbookDetail" style="position: absolute; right: 10px; font-size: 12px; text-transform: none;" href="javascript:void(0)">What is this?</a>
+								<a id="checkbookDetail" style="position: absolute; right: 10px; font-size: 14px; text-transform: none;" href="javascript:void(0)">What is this?</a>
                                                                 <div id="showCheckbookDetail" style="display: none; position: absolute; right: 60px; top:-10px; z-index: 99; width:240px; background-color: #fff; font-size: 12px; border: 1px solid #ccc; padding: 10px; text-transform: none;"></div>
 							</h3>
+                                                        
                                                         <!-- topSideSenderForm  -->
                                                         <div class="form-group" style="padding-right: 20px; margin-right:10px; margin-top:20px; float:none;">
 								  
@@ -117,7 +118,7 @@
                                                                                                 data-parsley-maxlength="9" data-parsley-minlength="9" maxlength="9">                                                                                                
                                                                                             </div>
                                                                                             <p class="errorResp"></p>
-                                                                                            <button id="microAuthInputBtn" type="button" class="btn btn-danger" style="position: absolute; top:105px; width:80px; left:455px;">Submit</button>
+                                                                                            <button id="microAuthInputBtn" type="button" class="btn btn-danger" style="position: absolute; top:105px; width:100px; left:455px;">Continue</button>
                                                                                     </div>
                                                                                     
                                                                                     
@@ -133,7 +134,7 @@
                                                                                                 id="routingNum" name="routingNum" placeholder="Enter amount"
                                                                                                 data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Your Routing Number">	                              <p class="errorResp"></p>
                                                                                             </div>
-                                                                                            <button id="microAuthCheck" type="button" class="btn btn-danger">Submit</button>
+                                                                                            <button id="microAuthCheck" type="button" class="btn btn-danger">Continue</button>
                                                                                                       
                                                                                     </div>
                                                                                     
@@ -159,7 +160,7 @@
                                                                                 
                                                                           </div>
                                                                           
-                                                                            <button id="bankMfaCheck" type="button" class="btn btn-danger" style="display: inline-block; width:100px; position: relative; top:-4px;">Submit</button>
+                                                                            <button id="bankMfaCheck" type="button" class="btn btn-danger" style="display: inline-block; width:100px; position: relative; top:-4px;">Continue</button>
                                                                             
                                                                             <p class="errorResp"></p>
                                                                             <div id="throbberIdBankMfaCheck" class="progress progress-striped active" style="display: none;">
@@ -202,7 +203,10 @@
 										placeholder="Enter Pin" tabindex="1" style="padding-left:8px !important; font-size:13px;"
 										data-parsley-maxlength="26" 
 										data-parsley-minlength="6"
-										data-parsley-required="true">    
+										data-parsley-required="true"
+                                                                                data-parsley-consecutive="3"
+                                                                                data-parsley-sequence="false"
+                                                                                >    
                                                                         </div>
                                                                         
 									<div style="display: inline-block; width:150px; margin: 0px 10px 15px 0px; vertical-align: top;">
@@ -251,6 +255,8 @@
 										style="margin-bottom: 0px; display: inline-block; width:100px; position: relative; top:-4px;">
 										      Continue</button>
                                                                                 
+                                                                                <a id="forgotYourPin" href="https://sandbox.checkbook.io/reset" target="_blank">Forgot PIN?</a>
+                                                                                
                                                                                 <div id="invalidPinLoginMsg" style="display: none; color: red; padding-bottom: 7px;">
 											Invalid Pin
 										</div>
@@ -289,7 +295,7 @@
 									      <div id="displayName" style="position: absolute; left: 20px; top: 14px;"></div>
 									      <!--<div id="displayAddress" style="font-size: 70%; position: absolute; left: 10px; top: 28px;">&nbsp;&nbsp;&nbsp;Addr1, Addr2</div>-->
 									      <!--<div id="displayAddressAdditional" style="font-size: 70%; position: absolute; left: 10px; top: 39px;">&nbsp;&nbsp;&nbsp;JR_City,&nbsp;CA&nbsp;76001</div>-->
-									      <div id="displayEmail" style="font-size: 9px; position: absolute; left: 20px; top: 58px;"></div>
+									      <div id="displayEmail" style="font-size: 9px; position: absolute; left: 20px; top: 58px; font-weight: bold;"></div>
 									      <div id="addressLine1" style="font-size: 9px; position: absolute; left: 20px; top: 38px;"></div>
 									      <div id="cityStateZip" style="font-size: 9px; position: absolute; left: 20px; top: 48px;"></div>
 									      <div style="position: absolute; left: 400px; top: 12px"></div> 
@@ -304,12 +310,12 @@
 								      <div style="position: absolute; left: 45px; top: 215px">
 									<input type="text" style="font-weight: bold; border: 2px solid rgb(73, 135, 202); padding-left: 5px !important; height: 28px; top: -15px; position: relative; background-color: rgb(238, 238, 238); padding: 0px 0px 0px 10px !important; width: 110px; left: -2px;"
 									      id="routingNumber" name="routingNumber" placeholder="Routing #"
-									      data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Your Routing Number">
+									      data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Your Routing Number" disabled>
 								      </div>
 								      <div style="position: absolute; left: 220px; top: 215px">
 									<input type="text" style="font-weight: bold; border: 2px solid rgb(73, 135, 202); padding-left: 5px !important; height: 28px; top: -15px; left: -45px; position: relative; background-color: rgb(238, 238, 238); padding: 0px 0px 0px 10px !important;  width: 160px;"
 									  id="accountNumber" name="accountNumber" placeholder="Account #"
-									  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Your Account Number">
+									  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Enter Your Account Number" disabled>
 								      </div>
 								      
 								 </div>	
