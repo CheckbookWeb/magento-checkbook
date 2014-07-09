@@ -12,7 +12,7 @@
 					<div>
 						<div class="box" style="margin: 0; padding: 0px 20px 0px 20px;">
 							<h3 class="bigintro">Pay by Online Check
-								<a id="checkbookDetail" style="position: absolute; right: 10px; font-size: 14px; text-transform: none;" href="javascript:void(0)">What is this?</a>
+								<a id="checkbookDetail" style="position: absolute; right: 10px; font-size: 14px; text-transform: none; font-weight:bold;" href="javascript:void(0)">What is this?</a>
                                                                 <div id="showCheckbookDetail" style="display: none; position: absolute; right: 60px; top:-10px; z-index: 99; width:240px; background-color: #fff; font-size: 12px; border: 1px solid #ccc; padding: 10px; text-transform: none;"></div>
 							</h3>
                                                         
@@ -104,11 +104,7 @@
                                                                                                 <option value="us">US Bank</option>
                                                                                                 <option value="micro">My Bank is not listed here</option>
                                                                                             </select>
-                                                                                            <div class="form-horizontal" style="display: inline-block; width:130px; margin:0px 10px 0px 0px; vertical-align: top;">                                              
-                                                                                                <input class="form-control" type="text" style="margin:10px 0px 15px 0px !important; padding-left:10px !important; font-size: 12px"                                       
-                                                                                                id="accountNum" name="accountNum" placeholder="Account Number" data-parsley-type="number" maxlength="17" data-parsley-maxlength="17"
-                                                                                                 data-parsley-minlength="6" data-parsley-required="true">
-                                                                                            </div>
+                                                                                            
                                                                                             <div class="form-horizontal" style="display: inline-block; width:130px; vertical-align: top;">                                               
                                                                                                 <input class="form-control" type="text" style="margin:10px 0px 15px 0px !important; padding-left:10px !important; font-size: 12px;"
                                                                                                 id="routingNum" name="routingNum" placeholder="Routing Number"
@@ -117,6 +113,13 @@
                                                                                                 data-parsley-required="true"
                                                                                                 data-parsley-maxlength="9" data-parsley-minlength="9" maxlength="9">                                                                                                
                                                                                             </div>
+                                                                                            
+                                                                                            <div class="form-horizontal" style="display: inline-block; width:130px; margin:0px 10px 0px 0px; vertical-align: top;">                                              
+                                                                                                <input class="form-control" type="text" style="margin:10px 0px 15px 0px !important; padding-left:10px !important; font-size: 12px"                                       
+                                                                                                id="accountNum" name="accountNum" placeholder="Account Number" data-parsley-type="number" maxlength="17" data-parsley-maxlength="17"
+                                                                                                 data-parsley-minlength="6" data-parsley-required="true">
+                                                                                            </div>
+                                                                                            
                                                                                             <p class="errorResp"></p>
                                                                                             <button id="microAuthInputBtn" type="button" class="btn btn-danger" style="position: absolute; top:105px; width:100px; left:455px;">Continue</button>
                                                                                     </div>
@@ -255,7 +258,7 @@
 										style="margin-bottom: 0px; display: inline-block; width:100px; position: relative; top:-4px;">
 										      Continue</button>
                                                                                 
-                                                                                <a id="forgotYourPin" href="https://sandbox.checkbook.io/reset" target="_blank">Forgot PIN?</a>
+                                                                                <a id="forgotYourPin" style="margin-left:220px;" href="https://sandbox.checkbook.io/reset" target="_blank">Forgot PIN?</a>
                                                                                 
                                                                                 <div id="invalidPinLoginMsg" style="display: none; color: red; padding-bottom: 7px;">
 											Invalid Pin
@@ -349,8 +352,8 @@
 var checkbook_config = {
 	data_key: "<?php echo $this->getMethod()->getConfigData('publishable_key');?>",
 	data_amount: "<?php echo $this->getFinalValue(); ?>",
-	data_name: "Your Company Name",
-	data_for: "Your Company Name",
+	data_name: "MOVband LLC",
+	data_for: "MOVband LLC",
 	data_description: "<?php echo $this->getItemDescription(); ?>",
 	data_user_email: "<?php echo $this->getCustomerEmail(); ?>",
 	data_firstName : "<?php echo $this->getCustomerFirstName(); ?>",
@@ -361,7 +364,7 @@ var checkbook_config = {
 	data_state : "<?php echo $this->getRegion(); ?>",
 	data_zip : "<?php echo $this->getPostcode(); ?>",
 	data_country : "<?php echo $this->getCountryName(); ?>",
-        data_env : "sandbox"
+    data_env : "sandbox"
 };
 var checkbook = new Checkbook(checkbook_config);
 
