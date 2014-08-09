@@ -1,6 +1,6 @@
 <?php
 /**
- * Cedcoss Checkbook Payment Module
+ * Checkbook Payment Module
  *
  * NOTICE OF LICENSE
  *
@@ -8,8 +8,8 @@
  * that is available through the world-wide-web at this URL:
  * http://opensource.org/licenses/osl-3.0.php
  *
- * @category   Cedcoss
- * @package    Cedcoss_Checkbook
+ * @category   Checkbook
+ * @package    Checkbook_Checkbook
  * @author     Abhishek Srivastava <abhisheksrivastava@cedcoss.com>
  */
 
@@ -18,7 +18,7 @@
  * Checkbook Payonline Controller
  *
  */
-class Cedcoss_Checkbook_PayonlineController extends Mage_Core_Controller_Front_Action
+class Checkbook_Checkbook_PayonlineController extends Mage_Core_Controller_Front_Action
 {
 	/**
      * Return Checkout Object
@@ -37,7 +37,7 @@ class Cedcoss_Checkbook_PayonlineController extends Mage_Core_Controller_Front_A
 		$this->loadLayout();
         $session = $this->getCheckout();
         $lastOrderId = $session->getLastOrderId();
-		
+
 		//Code To Call API.
 		$token = $session->getCheckbookToken();
 		$amount = $session->getAmount(); //Amount to be charged
@@ -70,6 +70,7 @@ class Cedcoss_Checkbook_PayonlineController extends Mage_Core_Controller_Front_A
 		$refno = file_get_contents($charge_endpoint_url,false,$context);
 		$pos = strpos($refno, "SUCCESS");
 		$response = json_decode($refno);
+		
 		if($response->status == 'SUCCESS') {
 			$session->addSuccess(Mage::helper('checkbook')->__("Your purchase was successful!"));
 		} else {
