@@ -1,6 +1,6 @@
 <?php
 /**
- * Checkbook Payment Module
+ * Cedcoss Checkbook Payment Module
  *
  * NOTICE OF LICENSE
  *
@@ -8,8 +8,8 @@
  * that is available through the world-wide-web at this URL:
  * http://opensource.org/licenses/osl-3.0.php
  *
- * @category   Checkbook
- * @package    Checkbook_Checkbook
+ * @category   Cedcoss
+ * @package    Cedcoss_Checkbook
  * @author     Abhishek Srivastava <abhisheksrivastava@cedcoss.com>
  */
 
@@ -18,7 +18,7 @@
  * Checkbook Payonline Controller
  *
  */
-class Checkbook_Checkbook_PayonlineController extends Mage_Core_Controller_Front_Action
+class Cedcoss_Checkbook_PayonlineController extends Mage_Core_Controller_Front_Action
 {
 	/**
      * Return Checkout Object
@@ -37,7 +37,7 @@ class Checkbook_Checkbook_PayonlineController extends Mage_Core_Controller_Front
 		$this->loadLayout();
         $session = $this->getCheckout();
         $lastOrderId = $session->getLastOrderId();
-
+		
 		//Code To Call API.
 		$token = $session->getCheckbookToken();
 		$amount = $session->getAmount(); //Amount to be charged
@@ -71,10 +71,20 @@ class Checkbook_Checkbook_PayonlineController extends Mage_Core_Controller_Front
 		$pos = strpos($refno, "SUCCESS");
 		$response = json_decode($refno);
 		if($response->status == 'SUCCESS') {
-			$session->addSuccess(Mage::helper('checkbook')->__($response->error));
+			$session->addSuccess(Mage::helper('checkbook')->__("Your purchase was successful!"));
 		} else {
-			$session->addError(Mage::helper('checkbook')->__($response->error));
+			$session->addError(Mage::helper('checkbook')->__("An error occured while submitting the payment to Checkbook!"));
 		}
+
+		try {
+
+		    $incrementId = $session->getLastRealOrderId();
+		    $_order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
+		    $_order->sendNewOrderEmail();
+		} catch (Exception $e) {
+		    Mage::logException($e);
+		}
+
 		//End Of Code.
         Mage::dispatchEvent('checkout_onepage_controller_success_action', array('order_ids' => array($lastOrderId)));
         $this->renderLayout();
